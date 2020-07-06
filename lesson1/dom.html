@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="p-1010" tag-color="yellow"
+        class="btn btn-sm"
+        onclick="getUserId(this)">Nguyen Thien Tam</p>
+    <p id="p-10281" tag-color="brown"
+        onclick="getUserId(this)">Nguyen Huy Hoang</p>
+    <p id="p-1010" tag-color="green"
+      onclick="getUserId(this)">Chu Van Thiet</p>
+    <span>something</span>
+    <input type="text" id="target" value="">
+  </body>
+
+  <script type="text/javascript">
+    function getUserId(ele){
+      //console.log(ele.id.substring(2, ele.id.length));
+      // ele.className = ele.className + " btn-danger";
+      // ele.style.color = ele.getAttribute('tag-color');
+      // console.log(ele.innerText);
+      document.querySelector('#target').setAttribute('value', ele.innerText);
+    }
+
+    let pList = document.querySelectorAll('#p-1010');
+    console.log(pList);
+
+  </script>
+</html>

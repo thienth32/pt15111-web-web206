@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text">
+    <input type="text">
+    <input type="text">
+    <br>
+    <h2></h2>
+    <script>
+        // tạo sự kiện cho thẻ input 
+        // khi nhập dữ liệu vào thẻ thì thẻ h2 ở bên dưới cũng
+        // thay đổi giá trị bằng giá trị đang có thẻ thẻ input
+        let h2Tag = document.querySelector('h2');
+        let inputTags = document.querySelectorAll('input');
+        for (let index = 0; index < inputTags.length; index++) {
+            inputTags[index].onkeyup = function(){
+                h2Tag.innerText = this.value;
+            };
+        }
+    </script>
+
+</body>
+</html>

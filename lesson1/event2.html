@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 60px;
+            height: 60px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        let divTag = document.querySelector('div');
+        divTag.onmouseover = function(){
+            this.style.background = "brown";
+        }
+        divTag.onmouseout = function (){
+            this.style.background = "green";
+        }
+    </script>
+</body>
+</html>
