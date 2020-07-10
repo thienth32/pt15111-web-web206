@@ -1,0 +1,29 @@
+<input type="text">
+<button>Kiểm tra</button>
+<h2></h2>
+<script>
+
+    document.querySelector('button').onclick = function(){
+        var str = document.querySelector('input').value;
+        // 1. đưa chuỗi về mảng
+        var arr1 = str.split('');
+        var arr2 = str.split('');
+        // 2. đảo mảng arr1
+        arr1.reverse();
+        // 3. so sánh từng ptu trong mảng
+        var check = true;
+        for (let index = 0; index < arr1.length; index++) {
+            if(arr1[index] != arr2[index]){
+                check = false;
+                break;
+            }
+        }
+
+        if(!check){
+            document.querySelector('h2').innerText = 'Không phải palinedrome';
+        }
+        else{
+            document.querySelector('h2').innerText = 'Palinedrome';
+        }
+    }
+</script>
