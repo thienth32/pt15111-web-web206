@@ -1,0 +1,32 @@
+<script src="util.js"></script>
+<script>
+    var duchoang = {
+        name: "nguyen duc hoang",
+        address: "Thị Trấn Hà Lội",
+        car: {
+            brand: "Mazda",
+            model: "Mazda 6",
+            color: "Black",
+            price: 1.4,
+        },
+        updateAddress: function(newAddress){
+            this.address = newAddress;
+        },
+        toString: function(){
+            return `Tên tôi là ${this.name}, tôi hiện đang đang ở ${this.address}`;
+        }
+    }
+
+    var huyhoang = new Object();
+    huyhoang.name = "Nguyễn Huy Hoàng";
+    huyhoang.height = 130;
+    huyhoang.isMarried = true;
+    huyhoang.love = function(){
+        this.height += 30;
+    }
+    console.log(huyhoang);
+
+
+
+
+</script>

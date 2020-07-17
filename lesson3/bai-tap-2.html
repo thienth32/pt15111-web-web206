@@ -1,0 +1,48 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+
+<script>
+    function VanDongVien(ma_vdv, ho_ten, ngay_sinh, giai_thuong){
+        this.ma_vdv = ma_vdv;
+        this.ho_ten = ho_ten;
+        this.ngay_sinh = ngay_sinh,
+        this.giai_thuong = giai_thuong;
+
+        this.kiem_tra_dieu_kien = function(ngay_to_chuc_giai, 
+                                                so_tuoi_giai_quy_dinh){
+            var tuoi_hien_tai_cua_vdv = moment(ngay_to_chuc_giai)
+                                    .diff(moment(this.ngay_sinh), 'years');
+            return tuoi_hien_tai_cua_vdv <= so_tuoi_giai_quy_dinh;
+        }
+
+        this.them_giai_thuong = function(tenGiaiThuong){
+            this.giai_thuong.push(tenGiaiThuong);
+        }
+
+        this.danh_sach_giai_thuong = function(){
+            this.giai_thuong.map(function(value, index){
+                console.log(`${value.id} - ${value.name}`);
+            });
+        }
+    }
+
+    var vietduc = new VanDongVien("ph00023", "Xúc xích Việt Đức", "2000-08-26", []);
+    // console.log(vietduc.kiem_tra_dieu_kien("2020-07-15", 15));
+    vietduc.them_giai_thuong(
+        {
+            id: 1543,
+            name: "Vô địch vovinam Poly - 2019",
+            reward: 5000000
+        }
+    );
+    vietduc.them_giai_thuong(
+        {
+            id: 1544,
+            name: "Ong Vàng Summer 2020",
+            reward: 1000000
+        }
+    );
+    console.log(vietduc);
+
+
+
+</script>

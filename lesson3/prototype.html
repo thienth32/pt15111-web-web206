@@ -1,0 +1,41 @@
+<script>
+    /*function Student(name, age){
+        this.name = name;
+        this.age = age;
+        
+    }
+    Student.say_hello = function(){
+        console.log(` - hello!`);
+    }
+
+    let duchoang = new Student("Nguyễn Đức Hoàng", 28);
+    let truonggiang = new Student("Lê Trường Giang", 25);
+    // duchoang.say_hello();
+    Student.say_hello();*/
+
+    let arr = [1,3,3,5,3];
+    // arr.removeDuplicate(); // => [1,3,5]
+    Array.prototype.removeDuplicate = function(){
+        let resultArr = [];
+        let that = this;
+        this.map(function(item, index){
+            // debugger;
+            let duplicate = false;
+            if(index <= that.length-1){
+                for(let i = index+1; i < that.length; i++){
+                    if(item === that[i]){
+                        duplicate = true;
+                        break;
+                    }
+                }
+            }
+            if(!duplicate){
+                resultArr.push(item);
+            }
+        });
+        return resultArr;
+    }
+    var arr2 = arr.removeDuplicate();
+    console.log(arr2, arr);
+
+</script>

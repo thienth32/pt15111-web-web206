@@ -1,0 +1,28 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+<script>
+    var thientam = {
+        mssv: "ph09184",
+        ho_va_ten: "Nguyễn Thiện Tâm",
+        lop: "PT15111-web",
+        ngay_nhap_hoc: "2019-01-15",
+        diem_trung_binh: 5.7,
+        tinhHocLuc: function(){
+            if(this.diem_trung_binh < 5){
+                return "Học lực yếu";
+            }else if(this.diem_trung_binh >=5 && this.diem_trung_binh < 7){
+                return "Học lực trung bình";
+            }else if(this.diem_trung_binh >= 7 && this.diem_trung_binh < 8){
+                return "Học lực khá";
+            }else{
+                return "Học lực giỏi";
+            }
+        },
+        thoiGianRaTruong: function(){
+            var now = moment();
+            var ngaynhaphoc = moment(this.ngay_nhap_hoc);
+            return 28 - now.diff(ngaynhaphoc, 'months');
+        }
+    }
+
+
+</script>
