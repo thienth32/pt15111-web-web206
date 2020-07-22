@@ -1,0 +1,36 @@
+<script>
+    /*setTimeout(() => {
+        console.log("1.học bài")
+    }, 2000);
+
+    setTimeout(() => {
+        console.log("2.ăn cơm")
+    }, 4000);
+
+    setTimeout(() => {
+        console.log("3. đi đánh răng")
+    }, 1000);
+
+    setTimeout(() => {
+        console.log("4. đi ngủ")
+    }, 3000);
+    */
+
+    function doingTask(msg, callback, time){
+        console.log(msg);
+        setTimeout(() => {
+            callback();
+        }, time);
+    }
+
+    setTimeout(() => {
+        doingTask("1.học bài", function(){
+            doingTask("2.ăn cơm", function(){
+                doingTask("3. đi đánh răng", function(){
+                    console.log("4. đi ngủ");
+                }, 3000)
+            }, 1000)
+        }, 4000)
+    }, 2000);
+
+</script>
