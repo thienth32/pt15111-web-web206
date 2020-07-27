@@ -83,7 +83,7 @@
                     <input type="text" name="create_address" class="form-control">
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-sm btn-success">Lưu</button>
+                    <button class="btn-save-create btn btn-sm btn-success">Lưu</button>
                 </div>
             </div>
         </div>
@@ -113,5 +113,47 @@
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
+    }
+
+
+    // code tạo mới
+    document.querySelector('.btn-save-create').onclick = function(){
+        // 1. thu thập dữ liệu từ modal
+        let data = {
+            name: document.querySelector('input[name="create_name"]').value,
+            logo: document.querySelector('input[name="create_logo"]').value,
+            address: document.querySelector('input[name="create_address"]').value,
+        };
+        // 2. Gửi request bằng fetch lên api 
+        let baseApiUrl = 'https://5f1a7522610bde0016fd292f.mockapi.io/hotels';
+        fetch(baseApiUrl, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(item) {
+            let newRow = `<tr id="data-${item.id}">
+                            <td>${item.id}</td>
+                            <td>${item.name}</td>
+                            <td>
+                                <img src="${item.logo}" width="50"/>
+                            </td>
+                            <td>${item.address}</td>
+                            <td>
+                                <button type="button" 
+                                    class="btn btn-danger btn-sm"
+                                    onclick="SystemCore.removeHotel(${item.id})">Xóa</button>
+                            </td>
+                        </tr>`;  
+            let content = document.querySelector('tbody').innerHTML;
+            content += newRow;
+            document.querySelector('tbody').innerHTML = content;
+        })
     }
 </script>
