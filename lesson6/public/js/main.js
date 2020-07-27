@@ -6,7 +6,6 @@ window.SystemCore = {
             return response.json();
         })
         .then(function(data) {
-            console.log(data);
             if(data.length > 0){
                 let content = ``;
                 data.map(function(item, index){
@@ -21,7 +20,13 @@ window.SystemCore = {
                                         <button type="button" 
                                             class="btn btn-danger btn-sm"
                                             onclick="SystemCore.removeHotel(${item.id})">Xóa</button>
+                                        &nbsp;
+                                        <button type="button" 
+                                            class="update-hotel-modal btn btn-info btn-sm"
+                                            onclick="">Sửa</button>
                                     </td>
+                                    
+
                                 </tr>`;                
                 });
 
