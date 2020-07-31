@@ -6,6 +6,28 @@
     <title>Assignment - Firebase</title>
 </head>
 <body>
+    <fieldset>
+        <legend>Tạo mới bệnh viện</legend>
+        <div>
+            <label for="">Tên bệnh viện</label>
+            <input type="text" name="name">
+        </div>
+        <div>
+            <label for="">Địa chỉ bệnh viện</label>
+            <input type="text" name="address">
+        </div>
+        <div>
+            <label for="">Logo bệnh viện</label>
+            <input type="text" name="logo">
+        </div>
+        <div>
+            <label for="">Số giường bệnh</label>
+            <input type="number" name="bed_number">
+        </div>
+        <div>
+            <button type="button" onclick="saveHospital()">Lưu</button>
+        </div>
+    </fieldset>
     
     <table>
         <thead>
@@ -49,6 +71,7 @@
     var db = firebase.firestore();
 
     db.collection("hospitals")
+        .orderBy("bed_number")
         .get()
         .then( (querySnapshot) => {
             let content = ``;
@@ -67,6 +90,21 @@
             });
             document.querySelector('tbody').innerHTML = content;
         });
+
+    function saveHospital(){
+        let data = {
+            name: document.querySelector('input[name="name"]').value,
+            address: document.querySelector('input[name="address"]').value,
+            logo: document.querySelector('input[name="logo"]').value,
+            bed_number: document.querySelector('input[name="bed_number"]').value,
+        };
+        var newHospital = db.collection("hospitals").doc();
+        newHospital.set(data);
+        document.querySelector('input[name="name"]').value = "";
+        document.querySelector('input[name="address"]').value = ""
+        document.querySelector('input[name="logo"]').value = ""
+        document.querySelector('input[name="bed_number"]').value = "";
+    }
 </script>
 </body>
 </html>
