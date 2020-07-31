@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>
+
+    </h2>
+    <ul></ul>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+    <script>
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const hotelId = urlParams.get('id');
+        
+        // lấy thông tin chi tiết của khách sạn
+        axios({
+            method: "GET",
+            url: `https://5f1a7522610bde0016fd292f.mockapi.io/hotels/${hotelId}`,
+            responseType: "json"
+        })
+        .then(function(responseData){
+            document.querySelector('h2').innerText = responseData.data.name;
+            
+        });
+
+        axios({
+            method: "get",
+            url: `https://5f1a7522610bde0016fd292f.mockapi.io/hotels/${hotelId}/rooms`,
+            responseType: "json"
+        })
+        .then(function(responseData){
+            // document.querySelector('h2').innerText = responseData.data.name;
+            let content = ``;
+            responseData.data.map(function(item, index){
+                content += `<li>${item.floor} - ${item.room_number}</li>`;
+            })
+            document.querySelector('ul').innerHTML = content;
+        })
+    </script>
+</body>
+</html>

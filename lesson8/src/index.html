@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment - Firebase</title>
+</head>
+<body>
+    
+
+<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCfISEw4SX9wirEXsrf-zjkxzcbv8sUiB4",
+        authDomain: "web206-ass-firestore.firebaseapp.com",
+        databaseURL: "https://web206-ass-firestore.firebaseio.com",
+        projectId: "web206-ass-firestore",
+        storageBucket: "web206-ass-firestore.appspot.com",
+        messagingSenderId: "496678043297",
+        appId: "1:496678043297:web:3e3ee0bc1956acdeb2bae0",
+        measurementId: "G-J5GTKR75R8"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    var db = firebase.firestore();
+
+    db.collection("hospitals")
+        .get()
+        .then( (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(doc.id);
+                console.log(doc.data());
+            });
+        });
+</script>
+</body>
+</html>

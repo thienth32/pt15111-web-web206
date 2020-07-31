@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT15111-web - assignment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-stripped">
+            <thead>
+                <th>id</th>
+                <th>name</th>
+                <th>logo</th>
+                <th>address</th>
+                <th>
+                    <button type="button" class="btn-create-modal btn btn-sm btn-success">Tạo mới</button>
+                </th>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="col-md-6 offset-md-3">
+                <div class="form-group">
+                    <label for="">Tên khách sạn</label>
+                    <input type="text" name="create_name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Logo khách sạn</label>
+                    <input type="text" name="create_logo" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Địa chỉ khách sạn</label>
+                    <input type="text" name="create_address" class="form-control">
+                </div>
+                <div class="text-center">
+                    <button class="btn-save-create btn btn-sm btn-success">Lưu</button>
+                </div>
+            </div>
+        </div>
+  
+    </div>
+</body>
+</html>
+
+<script src="./public/js/main.js"></script>
+<script>
+    SystemCore.fetchData();
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.querySelector(".btn-create-modal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+
+    // code tạo mới
+    document.querySelector('.btn-save-create').onclick = function(){
+        // 1. thu thập dữ liệu từ modal
+        let data = {
+            name: document.querySelector('input[name="create_name"]').value,
+            logo: document.querySelector('input[name="create_logo"]').value,
+            address: document.querySelector('input[name="create_address"]').value,
+        };
+        // 2. Gửi request bằng fetch lên api 
+        let baseApiUrl = 'https://5f1a7522610bde0016fd292f.mockapi.io/hotels';
+        fetch(baseApiUrl, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(item) {
+            let newRow = `<tr id="data-${item.id}">
+                            <td>${item.id}</td>
+                            <td>${item.name}</td>
+                            <td>
+                                <img src="${item.logo}" width="50"/>
+                            </td>
+                            <td>${item.address}</td>
+                            <td>
+                                <button type="button" 
+                                    class="btn btn-danger btn-sm"
+                                    onclick="SystemCore.removeHotel(${item.id})">Xóa</button>
+                            </td>
+                        </tr>`;  
+            let content = document.querySelector('tbody').innerHTML;
+            content += newRow;
+            document.querySelector('tbody').innerHTML = content;
+        })
+    }
+</script>

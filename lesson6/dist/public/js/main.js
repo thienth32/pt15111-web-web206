@@ -21,9 +21,9 @@ window.SystemCore = {
                                             class="btn btn-danger btn-sm"
                                             onclick="SystemCore.removeHotel(${item.id})">Xóa</button>
                                         &nbsp;
-                                        <button type="button" 
+                                        <a href="edit.html?id=${item.id}" 
                                             class="update-hotel-modal btn btn-info btn-sm"
-                                            onclick="">Sửa</button>
+                                            >Sửa</a>
                                     </td>
                                     
 
