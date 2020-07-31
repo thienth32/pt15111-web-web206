@@ -7,6 +7,17 @@
 </head>
 <body>
     
+    <table>
+        <thead>
+            <th>Bệnh viện</th>
+            <th>Địa chỉ</th>
+            <th>Logo</th>
+            <th>Số giường</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
 
 <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
@@ -40,10 +51,21 @@
     db.collection("hospitals")
         .get()
         .then( (querySnapshot) => {
+            let content = ``;
             querySnapshot.forEach((doc) => {
+                let item = doc.data();
+                content+=`<tr>
+                        <td>${item.name}</td>
+                        <td>${item.address}</td>
+                        <td>
+                            <img src="${item.logo}" width="100"/>    
+                        </td>
+                        <td>${item.bed_number}</td>
+                    </tr>`
                 console.log(doc.id);
                 console.log(doc.data());
             });
+            document.querySelector('tbody').innerHTML = content;
         });
 </script>
 </body>
