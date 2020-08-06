@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        
+    </ul>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        let apiUrl = "https://5f2a46da6ae5cc00164222cf.mockapi.io/hospitals";
+        
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
+        
+        axios.get(apiUrl)
+        .then(function (response) {
+            
+            console.log(response);
+        })
+        
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hovered{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <p class="target" poly-rollno="30">Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
+    <p class="target" poly-rollno="31">Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
+    <p class="target" poly-rollno="32">Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
+
+    <br>
+    <input type="text">
+    <h2></h2>
+    <div class="test" style="width: 70px; height: 70px; background: green;"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            $('.target').on('mouseover mouseout',function(){
+                $(this).toggleClass('hovered');
+                console.log($(this).attr('poly-rollno'));
+            });
+
+            
+
+            $('p[poly-rollno="31"]').text("Poly 10 năm");
+            $('input').keyup(function(){
+                const content = $(this).val();
+                $('h2').text(content);
+            });
+
+            $('input').focus(function(){
+                $(this).attr('type', 'checkbox');
+            });
+            $('input').blur(function(){
+                $(this).attr('type', 'text');
+            });
+            
+            $('.test').bind('click', function(){
+                    console.log('Click đơn');
+            });
+            
+            $('.test').bind('dblclick', function(){
+                    console.log('Click đúp');
+            });
+        });
+        let count  = 0;
+        let interval = setInterval(function(){
+            if(count > 3){
+                clearInterval(interval);
+            }
+            console.log("someone");
+
+            count++
+        }, 2000)
+
+        
+        
+    </script>
+</body>
+</html>
